@@ -1,0 +1,32 @@
+#!/bin/bash
+
+basepath=$(cd `dirname $0`; pwd)
+
+if [ $# == 0 ];then
+	echo "Error. The Arguments Count is : 0"
+else
+	isTypeArgument=1
+	otherArgumentsString=''
+	for i in $@
+	do
+		if [ $isTypeArgument == 1 ];then
+			isTypeArgument=0
+		else
+			otherArgumentsString=$otherArgumentsString" "$i
+		fi
+	done
+	case $1 in 
+		"start")
+			$basepath/sw-start $otherArgumentsString  > $basepath/log/sw-start.log 
+		;;
+		"restart")
+			$basepath/sw-restart $otherArgumentsString > $basepath/log/sw-restart.log 
+		;;
+		"stop")
+			$basepath/sw-stop $otherArgumentsString > $basepath/log/sw-stop.log 
+		;;
+		*)
+			echo "Error. The Type Argument Is Not Valid"
+		;;
+	esac
+fi

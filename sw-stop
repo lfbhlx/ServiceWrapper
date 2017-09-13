@@ -1,0 +1,11 @@
+#!/bin/bash
+
+basepath=$(cd `dirname $0`; pwd)
+
+cat $basepath/pid
+
+if [ $? == 0 ];then
+	pid=`cat $basepath/pid`
+	kill -9 $pid
+	rm $basepath/pid
+fi

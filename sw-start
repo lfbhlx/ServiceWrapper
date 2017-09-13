@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# You Can Write Your Own Start Cmd Here And You Can Access Arguments By $x $# $* $@ Etc.
+# You Have To Write Your Cmd Using Background Mode , eg : /bin/frps $* &
+
+# Write Your Cmd Here.
+/home/ubuntu/tmp/frp/frps $* &
+
+basepath=$(cd `dirname $0`; pwd)
+pid=`expr $$ + 1 `
+echo $pid > $basepath/pid
