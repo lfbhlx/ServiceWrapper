@@ -2,10 +2,9 @@
 
 basepath=$(cd `dirname $0`; pwd)
 
-cat $basepath/pid
+sign=`cat $basepath/sign`
+pid=`ps aux | grep "$sign" | head -1 | awk {print $2}`
 
-if [ $? == 0 ];then
-	pid=`cat $basepath/pid`
+if [ $pid -ne '' ];then
 	kill -9 $pid
-	rm $basepath/pid
 fi
